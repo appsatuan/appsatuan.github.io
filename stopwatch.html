@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Stopwatch App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <!-- Include jQuery and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <style>
+        /* Your existing styles here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .stopwatch {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 36px;
+        }
+
+        .btn-group {
+            margin-bottom: 10px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+        }
+
+        #split {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #commentModal .modal-dialog {
+            max-width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stopwatch">
+        <h1 id="display">00:00:00.00</h1>
+        <div class="btn-group" role="group">
+            <button id="startStop" onclick="startStop()" class="btn btn-primary">Start</button>
+            <button id="reset" onclick="reset()" class="btn btn-secondary">Reset</button>
+        </div>
+        <div class="row">
+            <div class="col-8 offset-2"> <!-- Offset 2 columns to center the button -->
+                <button id="split" onclick="split()" class="btn btn-success btn-block">Split (key C)</button>
+            </div>
+        </div>
+        <table id="splitTable" class="display">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Time</th>
+                    <th>Nomor</th>
+                </tr>
+            </thead>
+            <tbody id="splitList"></tbody>
+        </table>
+        <button id="copyToClipboard" onclick="copyToClipboard()">Copy to Clipboard</button>
+    </div>
+
+    <!-- Replace the existing modal content with Bootstrap 5 modal -->
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="commentModalLabel">Nomor Peserta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="commentForm" onsubmit="saveComment(); return false;">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="comment" placeholder="3 digit -> enter"
+                                maxlength="3">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="saveComment()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isRunning = false;
+        let startTime;
+        let interval;
+        let splitTimes = [];
+
+        let currentSplitIndex = 0;
+
+        function startStop() {
+            if (isRunning) {
+                clearInterval(interval);
+                document.getElementById("startStop").textContent = "Start";
+            } else {
+                startTime = Date.now() - (startTime ? startTime : 0);
+                interval = setInterval(updateDisplay, 10);
+                document.getElementById("startStop").textContent = "Stop";
+            }
+            isRunning = !isRunning;
+        }
+
+        function reset() {
+            clearInterval(interval);
+            document.getElementById("display").textContent = "00:00:00";
+            document.getElementById("startStop").textContent = "Start";
+            isRunning = false;
+            startTime = null;
+            splitTimes = [];
+            updateSplitTable();
+        }
+
+        function split() {
+            if (isRunning) {
+                const currentTime = Date.now() - startTime;
+                const splitTime = formatTime(currentTime);
+                splitTimes.push({ time: splitTime, comment: "" });
+                updateSplitTable();
+                openModal(splitTimes.length - 1);
+            }
+        }
+
+        function updateDisplay() {
+            const currentTime = Date.now() - startTime;
+            document.getElementById("display").textContent = formatTime(currentTime);
+        }
+
+        function formatTime(time) {
+            const hours = Math.floor(time / 3600000);
+            const minutes = Math.floor((time % 3600000) / 60000);
+            const seconds = Math.floor((time % 60000) / 1000);
+            const hundredths = Math.floor((time % 1000) / 10); // Display hundredths of a second
+            return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}.${pad(hundredths, 2)}`;
+        }
+
+        function pad(value, width = 2) {
+            return String(value).padStart(width, '0');
+        }
+
+        function openModal(splitIndex) {
+            currentSplitIndex = splitIndex;
+            $('#commentModal').modal('show');
+            $('#commentModal').on('shown.bs.modal', function () {
+                document.getElementById("comment").focus();
+            });
+        }
+
+        function closeModal() {
+            $('#commentModal').modal('hide');
+        }
+
+        function saveComment() {
+            const comment = document.getElementById("comment").value;
+            if (comment.trim() !== "") {
+                splitTimes[currentSplitIndex].comment = comment;
+                closeModal();
+                updateSplitTable();
+                document.getElementById("comment").value = "";
+            }
+        }
+
+        function updateSplitTable() {
+            const splitList = document.getElementById("splitList");
+            splitList.innerHTML = "";
+            splitTimes.forEach((split, index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${split.time}</td>
+                    <td>${split.comment}</td>
+                `;
+                splitList.appendChild(row);
+            });
+        }
+
+        function initializeDataTable() {
+            $('#splitTable').DataTable({
+                "order": [[0, "desc"]], // Sort by the first column (latest data on top)
+                "paging": true, // Enable pagination
+                "pageLength": 20, // Number of rows per page
+                "bLengthChange": false, // Disable the page length change option
+            });
+        }
+
+        function copyToClipboard() {
+            const splitData = splitTimes.map((split, index) => `${index + 1} | ${split.time} | ${split.comment}`).join('\n');
+            const textarea = document.createElement('textarea');
+            textarea.value = splitData;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            alert('Split data copied to clipboard!');
+        }
+
+        // Initialize DataTables
+        initializeDataTable();
+
+        document.addEventListener("keypress", function (event) {
+            if (event.key === "c" || event.key === "C") {
+                split();
+            }
+        });
+        window.addEventListener('beforeunload', function (e) {
+            e.preventDefault();
+            e.returnValue = '';
+        });
+
+    </script>
+</body>
+
+</html>
