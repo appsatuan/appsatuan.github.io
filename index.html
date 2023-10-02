@@ -91,8 +91,16 @@
     
                 // Display the duration and rank or show "Not found" using SweetAlert
                 if (foundData) {
-                    $("#duration").text(foundData[1]);
-                    $("#rank").text(foundData[2]);
+                    var durationInSeconds = foundData[1];
+            var durationHours = Math.floor(durationInSeconds / 3600);
+            var durationMinutes = Math.floor((durationInSeconds % 3600) / 60);
+            var durationSeconds = durationInSeconds % 60;
+
+            // Format the duration as "jam, menit, detik"
+            var formattedDuration = durationHours + " jam, " + durationMinutes + " menit, " + durationSeconds + " detik";
+
+            $("#duration").text(formattedDuration);
+            $("#rank").text(foundData[2]);
     
                     // Hide the form card and show the result card
                     $(".form-card").addClass("d-none");
@@ -102,7 +110,7 @@
                     Swal.fire({
                         icon: 'error',
                         title: 'Not found',
-                        text: 'Data for the provided number was not found.',
+                        text: 'Cek kembali nomor Anda, atau refresh',
                     });
 
                     // Hide the result card if it was previously shown
