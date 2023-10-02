@@ -187,7 +187,7 @@
                 document.getElementById("comment").value = "";
             }
         }
-
+/*
         function updateSplitTable() {
             const splitList = document.getElementById("splitList");
             splitList.innerHTML = "";
@@ -200,13 +200,37 @@
                 `;
                 splitList.appendChild(row);
             });
-        }
+           
+        }*/
+        function updateSplitTable() {
+    const table = $('#splitTable');
+    table.DataTable().clear().destroy(); // Clear and destroy the existing DataTable
+
+    const tableBody = document.getElementById("splitList");
+    tableBody.innerHTML = "";
+
+    splitTimes.forEach((split, index) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${split.time}</td>
+            <td>${split.comment}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    // Recreate the DataTable with the updated data
+    initializeDataTable();
+}
+
+
+
 
         function initializeDataTable() {
             $('#splitTable').DataTable({
                 "order": [[0, "desc"]], // Sort by the first column (latest data on top)
                 "paging": true, // Enable pagination
-                "pageLength": 20, // Number of rows per page
+                "pageLength": 5, // Number of rows per page
                 "bLengthChange": false, // Disable the page length change option
             });
         }
