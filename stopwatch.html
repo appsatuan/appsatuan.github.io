@@ -19,8 +19,18 @@
             text-align: center;
             background-color: #f2f2f2;
             padding: 20px;
+            background-image: url('asset/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
-
+       
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+            border-radius: 10px; /* Add rounded corners to the container */
+            padding: 20px;
+            margin-top: 30px;
+        }
         .stopwatch {
             background-color: #fff;
             border: 1px solid #ccc;
@@ -81,7 +91,9 @@
                     <button id="copyToClipboard" onclick="copyToClipboard()">Copy to Clipboard</button>
                 </div>
             </div>
+            <div class="row"><a href="https://arifsatuan.github.io/"><span class="small"> arifsatuan © 2023</span></a></div>
         </div>
+        
     </div>
 
     <!-- Replace the existing modal content with Bootstrap 5 modal -->
@@ -230,7 +242,7 @@
             $('#splitTable').DataTable({
                 "order": [[0, "desc"]], // Sort by the first column (latest data on top)
                 "paging": true, // Enable pagination
-                "pageLength": 5, // Number of rows per page
+                "pageLength": 10, // Number of rows per page
                 "bLengthChange": false, // Disable the page length change option
             });
         }
