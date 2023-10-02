@@ -64,10 +64,11 @@
         $(document).ready(function() {
             // Load the data when the page loads
             var data = null;
-            fetch("https://script.googleusercontent.com/macros/echo?user_content_key=vONWUOqYVV8ZVTKmIV5Tj1Vm4ORxDJ2Fhbtd_Chji2Xnbrr5aLhv-b9853xU1lxsCiXpQOIZRLDg6_HnxVY_P50ttZSiezZ6m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnG0uds1Eyue5gvs1YoFoLG06eq_WVzR42g33tx2Jm4v37t1v-dODmc0uZ_VCiJPm6wIG3KzzH4bjRFSfwYrpqeO8mzDTCqnGIg&lib=M7WUashvXW8yLk34kNsF8ry9NzLQ-Nase")
+            fetch("https://script.googleusercontent.com/macros/echo?user_content_key=VnG4C030sv4JaJXjKJIqutnzAOmPaRnuOj0fQdvnXVsEXxuacwy3DIyiILmnzc2rqEECVF2PP1fKHg-E7gc73at7xQngtcoYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC-cAw4QGnSIdBz2xojWYpCoweAhggkXv8pvy9AJfm_sIk4sJxBFghq_bk3PRp7OP0Vndw9qiMb3jvIkFHgpG79lc_rRtpXpDw&lib=M7WUashvXW8yLk34kNsF8ry9NzLQ-Nase")
                 .then(response => response.json())
                 .then(result => {
                     data = result;
+                    console.log(data);
                 })
                 .catch(error => {
                     console.error("Error fetching data:", error);
@@ -92,12 +93,10 @@
                 // Display the duration and rank or show "Not found" using SweetAlert
                 if (foundData) {
                     var durationInSeconds = foundData[1];
-            var durationHours = Math.floor(durationInSeconds / 3600);
-            var durationMinutes = Math.floor((durationInSeconds % 3600) / 60);
-            var durationSeconds = durationInSeconds % 60;
+           
 
             // Format the duration as "jam, menit, detik"
-            var formattedDuration = durationHours + " jam, " + durationMinutes + " menit, " + durationSeconds + " detik";
+            var formattedDuration = durationInSeconds;
 
             $("#duration").text(formattedDuration);
             $("#rank").text(foundData[2]);
