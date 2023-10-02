@@ -53,32 +53,39 @@
 </head>
 
 <body>
-    <div class="stopwatch">
-        <h1 id="display">00:00:00.00</h1>
-        <div class="btn-group" role="group">
-            <button id="startStop" onclick="startStop()" class="btn btn-primary">Start</button>
-            <button id="reset" onclick="reset()" class="btn btn-secondary">Reset</button>
-        </div>
+    <div class="container">
         <div class="row">
-            <div class="col-8 offset-2"> <!-- Offset 2 columns to center the button -->
-                <button id="split" onclick="split()" class="btn btn-success btn-block">Split (key C)</button>
+            <div class="col-md-8 mx-auto">
+                <div class="stopwatch">
+                    <h1 id="display">00:00:00.00</h1>
+                    <div class="btn-group" role="group">
+                        <button id="startStop" onclick="startStop()" class="btn btn-primary">Start</button>
+                        <button id="reset" onclick="reset()" class="btn btn-secondary">Reset</button>
+                    </div>
+                    <div class="row">
+                        <div class="col-8 offset-2"> <!-- Offset 2 columns to center the button -->
+                            <button id="split" onclick="split()" class="btn btn-success btn-block">Split (key
+                                C)</button>
+                        </div>
+                    </div>
+                    <table id="splitTable" class="display">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Time</th>
+                                <th>Nomor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="splitList"></tbody>
+                    </table>
+                    <button id="copyToClipboard" onclick="copyToClipboard()">Copy to Clipboard</button>
+                </div>
             </div>
         </div>
-        <table id="splitTable" class="display">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Time</th>
-                    <th>Nomor</th>
-                </tr>
-            </thead>
-            <tbody id="splitList"></tbody>
-        </table>
-        <button id="copyToClipboard" onclick="copyToClipboard()">Copy to Clipboard</button>
     </div>
 
     <!-- Replace the existing modal content with Bootstrap 5 modal -->
-    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+    <div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -94,7 +101,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>--> 
                     <button type="button" class="btn btn-primary" onclick="saveComment()">Save</button>
                 </div>
             </div>
@@ -161,6 +168,7 @@
         function openModal(splitIndex) {
             currentSplitIndex = splitIndex;
             $('#commentModal').modal('show');
+            
             $('#commentModal').on('shown.bs.modal', function () {
                 document.getElementById("comment").focus();
             });
