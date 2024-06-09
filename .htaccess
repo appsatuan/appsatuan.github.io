@@ -1,0 +1,10 @@
+# Enable the RewriteEngine module
+RewriteEngine On
+
+# Rule to remove the .html extension from the URL
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# Optional: Rule to force the removal of .html extension
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^([^\.]+)$ $1.html [L]

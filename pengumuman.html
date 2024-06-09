@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Lookup</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('asset/bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background */
+            border-radius: 10px; /* Add rounded corners to the container */
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .show-result .form-card {
+            display: none;
+        }
+
+       
+
+        .large-text {
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container col-md-6">
+        <h1>Hasil Smanda run</h1>
+
+        <!-- Form Card (Initially Shown) -->
+        <div class="form-card card">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="numberInput">Masukkan nomor punggung:</label>
+                    <input type="text" class="form-control" id="numberInput" placeholder="000">
+                </div>
+                <button class="btn btn-primary" id="lookupButton">Cari</button>
+            </div>
+        </div>
+
+        <!-- Result Card (Initially Hidden) -->
+        <div class="result-card card mt-3" style="display: none;">
+            <div class="card-body">
+                <p class="large-text">Duration: <span id="duration"></span></p>
+                <p class="large-text">Rank: <span id="rank"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap and jQuery JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        $(document).ready(function() {
+            // Load the data when the page loads
+            var data = null;
+            fetch("https://script.googleusercontent.com/macros/echo?user_content_key=VnG4C030sv4JaJXjKJIqutnzAOmPaRnuOj0fQdvnXVsEXxuacwy3DIyiILmnzc2rqEECVF2PP1fKHg-E7gc73at7xQngtcoYm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnC-cAw4QGnSIdBz2xojWYpCoweAhggkXv8pvy9AJfm_sIk4sJxBFghq_bk3PRp7OP0Vndw9qiMb3jvIkFHgpG79lc_rRtpXpDw&lib=M7WUashvXW8yLk34kNsF8ry9NzLQ-Nase")
+                .then(response => response.json())
+                .then(result => {
+                    data = result;
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                });
+    
+            $("#lookupButton").click(function() {
+                // Get the input number
+                var number = $("#numberInput").val();
+    
+                // Find the data for the input number
+                var foundData = null;
+                if (data) {
+                    for (var i = 0; i < data.data.length; i++) {
+                        if (data.data[i][0] == parseInt(number)) {
+                            foundData = data.data[i];
+                            console.log(foundData)
+                            break;
+                        }
+                    }
+                }
+    
+                // Display the duration and rank or show "Not found" using SweetAlert
+                if (foundData) {
+                    var durationInSeconds = foundData[1];
+           
+
+            // Format the duration as "jam, menit, detik"
+            var formattedDuration = durationInSeconds;
+
+            $("#duration").text(formattedDuration);
+            $("#rank").text(foundData[2]);
+    
+                    // Hide the form card and show the result card
+                    $(".form-card").addClass("d-none");
+                    $(".result-card").show();
+                } else {
+                    // Show "Not found" using SweetAlert
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Not found',
+                        text: 'Cek kembali nomor Anda, atau refresh',
+                    });
+
+                    // Hide the result card if it was previously shown
+                    $(".result-card").addClass("d-none");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
