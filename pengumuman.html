@@ -11,6 +11,7 @@
       crossorigin="anonymous"
     />
     <style>
+	
       body {
         padding: 20px;
       }
@@ -635,7 +636,7 @@ function searchUsers() {
         userTable.innerHTML = `
           <tbody> 
  			<tr> 
-              <td colspan="3" class="text-center"  >Selamat, anda dinyatakan<br> <span class="h2 text-success text-center" > LULUS</span></td>   
+              <td colspan="3" class="text-center alert alert-primary"  ><div class="alert alert-primary">Selamat, anda dinyatakan<br> <span class="h2  text-primary text-center" > LULUS</span></div></td>     
             </tr>
 
             <tr>
@@ -666,8 +667,8 @@ function searchUsers() {
         userTable.className = "table table-bordered";
         userTable.innerHTML = `
              <tbody>
-            <tr> 
-              <td colspan="3" class="text-center"  >Mohon maaf, anda dinyatakan<br> <span class="h2 text-danger text-center" >TIDAK LULUS</span></td>   
+<tr> 
+              <td colspan="3" class="text-center alert alert-danger"  ><div class="alert alert-danger">Mohon maaf, anda dinyatakan <br> <span class="h2  text-danger text-center" > TIDAK LULUS</span></div></td>     
             </tr>
      
     
