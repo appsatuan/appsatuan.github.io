@@ -88,11 +88,11 @@
         <div id="loadingSpinner"></div>
         <div class="loader-text">Loading...</div>
     </div>
-    <div class="container">
+    <div class="container col-12 col-md-7"> 
       <div class="text-center mb-4">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuFtbc9HaaYrYj17NuHC-tAaRQEp52GEZskQ&s" width="100px" alt="Logo" class="img-fluid" />  
       </div>
-      <h4 class="text-center mb-0">Pengumuman Kelulusan Kelas KKO 2024 </h4> 
+      <h4 class="text-center mb-0">Pengumuman xxx </h4>
       <h2 class="text-center mb-4">SMAN 2 Cilacap</h2> 
       <form id="searchForm" class="mb-4">
         <div class="mb-3">
@@ -122,6 +122,24 @@
     ></script>
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script>
+	 const birthDateInput = document.getElementById('birthDate');
+    
+    // Set min and max attributes
+    birthDateInput.min = '2006-01-01';
+    birthDateInput.max = '2011-12-31';
+
+    // Optional: You can add additional validation or event listeners
+    birthDateInput.addEventListener('change', function() {
+      const selectedDate = new Date(this.value);
+      const minDate = new Date(this.min);
+      const maxDate = new Date(this.max);
+
+      if (selectedDate < minDate || selectedDate > maxDate) {
+        alert('Please select a date between 2006 and 2011.');
+        this.value = ''; // Clear the invalid date
+      }
+    });
+	 
       const users = [
        {
         "id": "L038",
