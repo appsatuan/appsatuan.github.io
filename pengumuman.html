@@ -63,24 +63,456 @@
     <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.18/dist/index.min.js"></script>
     <script>
       const users = [
-        {
-          id: "123456",
-          birth_date: "2024-06-10", 
-          name: "Alice",
-          status: "pass",
-        },
-        {
-          id: "123457",
-          birth_date: "2024-06-10", 
-          name: "Bob",
-          status: "fail",
-        },
-        {
-          id: "user3",
-          birth_date: "2000-08-22",
-          name: "Charlie",
-          status: "pass",
-        },
+       {
+        'id': 'L038',
+        'birth_date': '2009-06-29',
+        'name': 'Dimas Hipnu Rimawan',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L026',
+        'birth_date': '2009-02-13',
+        'name': 'Fransiskus Valentinus Siallagan',
+        'sekolah_asal': 'SMP Migas Senori',
+        'cabor': 'Bulu Tangkis',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L055',
+        'birth_date': '2009-06-04',
+        'name': 'Nabil Zaky Al Azhar',
+        'sekolah_asal': 'SMP Negeri 5 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L050',
+        'birth_date': '2009-03-27',
+        'name': 'RAIHAN BINTANG PRATAMA',
+        'sekolah_asal': 'SMP PGRI 1 Cilacap',
+        'cabor': 'Atletik',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P057',
+        'birth_date': '2009-07-26',
+        'name': 'Aliya Nurlaeli Rahmasonia',
+        'sekolah_asal': 'SMP Muhammadiyah 2 Cilacap',
+        'cabor': 'Atletik',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L051',
+        'birth_date': '2009-06-30',
+        'name': 'Ikhwan Ahmad',
+        'sekolah_asal': 'SMP Muhammadiyah 2 Cilacap',
+        'cabor': 'Atletik',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L025',
+        'birth_date': '2009-02-11',
+        'name': 'Rafif Winar Nadindra',
+        'sekolah_asal': 'SMP Negeri 1 Adipala',
+        'cabor': 'Bulu Tangkis',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L044',
+        'birth_date': '2009-02-28',
+        'name': 'NIWANPUTRA BONIS PAMUNGKAS',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Karate',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L041',
+        'birth_date': '2008-08-10',
+        'name': 'Pasca Pandji Nagoro',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Bulu Tangkis',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L012',
+        'birth_date': '2008-10-04',
+        'name': 'Muhammad Jibril Al-Fathir',
+        'sekolah_asal': 'SMP Negeri 6 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P042',
+        'birth_date': '2009-02-24',
+        'name': 'Febriana Aditiya Lisa Chaerudin',
+        'sekolah_asal': 'SMP Negeri 5 Cilacap',
+        'cabor': 'Karate',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L024',
+        'birth_date': '2009-02-10',
+        'name': 'Nadhif Ghani Alfredo',
+        'sekolah_asal': 'SMP Negeri 1 Adipala',
+        'cabor': 'Bulu Tangkis',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L034',
+        'birth_date': '2009-03-18',
+        'name': 'Alvino Adi Saputra',
+        'sekolah_asal': 'SMP Negeri 5 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L028',
+        'birth_date': '2009-02-21',
+        'name': 'Riyo Febriyan',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Taekwondo',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L015',
+        'birth_date': '2009-04-27',
+        'name': 'Hafiel Rahadian Putra',
+        'sekolah_asal': 'SMP Negeri 4 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L004',
+        'birth_date': '2009-09-15',
+        'name': 'Muhammad Ramdhan Athikurohman',
+        'sekolah_asal': 'SMP Negeri 2 Maos',
+        'cabor': 'Pencak Silat',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P045',
+        'birth_date': '2009-09-25',
+        'name': 'Shankara Fa'alya Latieffany',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Karate',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L056',
+        'birth_date': '2009-01-26',
+        'name': 'RAIHAAN AZHAR AL QATAR RIZKY',
+        'sekolah_asal': 'SMP PGRI 1 Cilacap',
+        'cabor': 'Tenis Meja',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L009',
+        'birth_date': '2009-04-17',
+        'name': 'Dwiki David Okka',
+        'sekolah_asal': 'SMP Negeri 2 Sidareja',
+        'cabor': 'Karate',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L053',
+        'birth_date': '2009-07-31',
+        'name': 'YEREMIA MUSTAMU',
+        'sekolah_asal': 'SMP Negeri 5 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P052',
+        'birth_date': '2009-04-03',
+        'name': 'Gada Puspa Amelin',
+        'sekolah_asal': 'SMP Negeri 5 Cilacap',
+        'cabor': 'Panahan',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L049',
+        'birth_date': '2008-06-07',
+        'name': 'Gabriell Moses Geraldo',
+        'sekolah_asal': 'SMP Yos Sudarso Kawuganten',
+        'cabor': 'Sepak Bola',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P022',
+        'birth_date': '2008-12-17',
+        'name': 'Dinda Nofitasari',
+        'sekolah_asal': 'SMP Negeri 9 Cilacap',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L047',
+        'birth_date': '2008-10-31',
+        'name': 'IMAM FAUZI',
+        'sekolah_asal': 'SMP Al Azhar 15 Cilacap',
+        'cabor': 'Pencak Silat',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P046',
+        'birth_date': '2009-03-23',
+        'name': 'GABRIELLA PASKALIA DYTHAYANTRI',
+        'sekolah_asal': 'SMP Maria Immaculata',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P048',
+        'birth_date': '2009-04-05',
+        'name': 'KAMAELA SOFIE AYUWANDANI',
+        'sekolah_asal': 'SMP Negeri 8 Cilacap',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P002',
+        'birth_date': '2009-07-24',
+        'name': 'Caevylla Two Detya Rizqullah',
+        'sekolah_asal': 'SMP Negeri 2 Cilacap',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P030',
+        'birth_date': '2009-02-06',
+        'name': 'Wefresh Hidayahsari',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Catur',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P016',
+        'birth_date': '2009-03-23',
+        'name': 'Wahyu Anisa Ussaima',
+        'sekolah_asal': 'SMP Muhammadiyah 1 Cilacap',
+        'cabor': 'Pencak Silat',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L014',
+        'birth_date': '2009-03-03',
+        'name': 'Hanung Prastiko Wibowo',
+        'sekolah_asal': 'SMP Negeri 6 Cilacap',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P031',
+        'birth_date': '2009-07-06',
+        'name': 'Fika Meliana Iranti',
+        'sekolah_asal': 'SMP Negeri 7 Cilacap',
+        'cabor': 'Balap Sepeda',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L008',
+        'birth_date': '2009-02-22',
+        'name': 'Warhan Irmansyah',
+        'sekolah_asal': 'SMP Negeri 1 Jeruklegi',
+        'cabor': 'Voli',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P006',
+        'birth_date': '2009-07-02',
+        'name': 'Intan Juliana',
+        'sekolah_asal': 'SMP Negeri 2 Sidareja',
+        'cabor': 'Sepak Takraw',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L032',
+        'birth_date': '2008-07-09',
+        'name': 'BRILIANT NAVY RULINDA',
+        'sekolah_asal': 'SMP Al Azhar 15 Cilacap',
+        'cabor': 'Panahan',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P007',
+        'birth_date': '2009-09-19',
+        'name': 'Fitri Nayla Azqia',
+        'sekolah_asal': 'SMP Negeri 2 Kedungreja',
+        'cabor': 'Sepak Takraw',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'P011',
+        'birth_date': '2009-10-05',
+        'name': 'Isnaeni Oktafia Wardina',
+        'sekolah_asal': 'SMP Negeri 6 Cilacap',
+        'cabor': 'Sepak Takraw',
+       'status':'LULUS'
+    }, 
+  {
+        'id': 'L036',
+        'birth_date': '2008-07-09',
+        'name': 'IBNU HANIF SAMSUL MA'ARIF',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Sepak Bola',
+       'status':'CADANGAN'
+    }, 
+  {
+        'id': 'P033',
+        'birth_date': '2008-10-04',
+        'name': 'Etik Setyo Fitriani',
+        'sekolah_asal': 'SMP Negeri 2 Maos',
+        'cabor': 'Bulu Tangkis',
+       'status':'CADANGAN'
+    }, 
+  {
+        'id': 'L054',
+        'birth_date': '2008-05-18',
+        'name': 'Wisnu Dedista Firdaus',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Muaythai',
+       'status':'CADANGAN'
+    }, 
+  {
+        'id': 'L021',
+        'birth_date': '2008-10-28',
+        'name': 'Faiq Widyatama Putra',
+        'sekolah_asal': 'SMP Negeri 1 Jeruklegi',
+        'cabor': 'Tenis Meja',
+       'status':'CADANGAN'
+    }, 
+  {
+        'id': 'P010',
+        'birth_date': '2009-04-24',
+        'name': 'Lily Trisna Lestari',
+        'sekolah_asal': 'SMP Pius Cilacap',
+        'cabor': 'Pencak Silat',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'L001',
+        'birth_date': '2009-07-20',
+        'name': 'Aozora Arkaan Legowo',
+        'sekolah_asal': 'SMP Negeri 2 Maos',
+        'cabor': 'Basket ',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P020',
+        'birth_date': '2008-01-20',
+        'name': 'Karin Nur Aeni',
+        'sekolah_asal': 'SMP Negeri 9 Cilacap',
+        'cabor': 'Voli',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'L037',
+        'birth_date': '2008-07-27',
+        'name': 'DAFFA ALAZIZ ERMAWAN',
+        'sekolah_asal': 'SMP Negeri 1 Cilacap',
+        'cabor': 'Futsal',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P029',
+        'birth_date': '2007-12-22',
+        'name': 'SARI NUR HARISMA',
+        'sekolah_asal': 'SMP Negeri 9 Cilacap',
+        'cabor': 'Voli',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'L023',
+        'birth_date': '2007-11-23',
+        'name': 'Ghazali Revan Sebastian',
+        'sekolah_asal': 'SMP Negeri 9 Cilacap',
+        'cabor': 'Voli',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P005',
+        'birth_date': '2008-11-21',
+        'name': 'Umiati Catur Rahayu',
+        'sekolah_asal': 'SMP Negeri 1 Kesugihan',
+        'cabor': 'Atletik',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P013',
+        'birth_date': '2009-03-11',
+        'name': 'Zharifah Yumna Marzuqah',
+        'sekolah_asal': 'SMP Al Irsyad Cilacap',
+        'cabor': 'Pencak Silat',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P017',
+        'birth_date': '2009-06-01',
+        'name': 'Livia Callista Indriawuri',
+        'sekolah_asal': 'SMP Negeri 7 Cilacap',
+        'cabor': 'Pencak Silat',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P027',
+        'birth_date': '2008-10-16',
+        'name': 'Indah Resfitri Arini',
+        'sekolah_asal': 'SMP Al Irsyad Cilacap',
+        'cabor': 'Voli',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P040',
+        'birth_date': '2008-12-31',
+        'name': 'Alecya Restyana Amarta',
+        'sekolah_asal': 'SMP PGRI Cilacap',
+        'cabor': 'Futsal',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P019',
+        'birth_date': '2008-06-28',
+        'name': 'Kukuh Rosa Fatmala',
+        'sekolah_asal': 'SMP Negeri 9 Cilacap',
+        'cabor': 'Voli',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'P043',
+        'birth_date': '2009-02-25',
+        'name': 'Zuhdaa Mayla Khoiro',
+        'sekolah_asal': 'SMP Al Irsyad Cilacap',
+        'cabor': 'Bulu Tangkis',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': ' P003',
+        'birth_date': '2008-03-23',
+        'name': 'Vega Wulandari',
+        'sekolah_asal': 'SMP Islam 1 Cilacap',
+        'cabor': 'Atletik',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'L018',
+        'birth_date': '2009-10-25',
+        'name': 'Abrar Kazhema Ogiwa',
+        'sekolah_asal': 'SMP Muhammadiyah Jeruklegi',
+        'cabor': 'Renang',
+       'status':'TIDAK LULUS'
+    }, 
+  {
+        'id': 'L035',
+        'birth_date': '2009-03-01',
+        'name': 'Fabian Fairus Musyaffa',
+        'sekolah_asal': 'SMP Negeri 3 Maos',
+        'cabor': 'Atletik',
+       'status':'TIDAK LULUS'
+    } 
+
+
       ];
 
       const confettiSettings = { target: 'my-canvas', max: 100, size: 1.2, animate: true };
